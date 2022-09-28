@@ -1,4 +1,4 @@
-package com.siberia.market.search.domain
+package com.siberia.market.product.domain
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -7,6 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Product(
     @Id
     val id: String,
-    val title: String,
-    val description: String
+    var title: String,
+    var description: String
 )

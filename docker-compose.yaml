@@ -21,6 +21,17 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
 
+  product-service:
+    build: ./product-service
+    image: siberia/product-service:v1.0
+    container_name: product-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8380:8380"
+    depends_on:
+      - mongo
+
   search-service:
     build: ./search-service
     image: siberia/search-service:v1.0

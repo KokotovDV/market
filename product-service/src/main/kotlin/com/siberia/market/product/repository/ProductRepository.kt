@@ -1,6 +1,6 @@
-package com.siberia.market.search.repository
+package com.siberia.market.product.repository
 
-import com.siberia.market.search.domain.Product
+import com.siberia.market.product.domain.Product
 import org.springframework.data.mongodb.repository.Query
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository
 import reactor.core.publisher.Flux
