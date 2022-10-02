@@ -27,6 +27,10 @@ class ProductServiceImpl(
         return productRepository.save(product)
     }
 
+    override fun createProducts(products: List<Product>): Flux<Product> {
+        return productRepository.saveAll(products)
+    }
+
     override fun updateProduct(id: String, product: Product): Mono<Product> {
         return productRepository.findById(id)
             .map {

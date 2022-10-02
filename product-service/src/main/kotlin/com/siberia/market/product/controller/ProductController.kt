@@ -31,6 +31,16 @@ class ProductController(
         return productService.createProduct(product)
     }
 
+    @PostMapping("/list")
+    fun createProducts(@RequestBody products: List<Product>): Flux<Product> {
+        return productService.createProducts(products)
+    }
+
+    @PutMapping("/{id}")
+    fun updateProduct(@PathVariable("id") id: String, @RequestBody product: Product): Mono<Product> {
+        return productService.updateProduct(id, product)
+    }
+
     @DeleteMapping("/{id}")
     fun deleteProduct(@PathVariable("id") id: String): Mono<Void> {
         return productService.deleteProduct(id)

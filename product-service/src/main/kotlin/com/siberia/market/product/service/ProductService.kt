@@ -14,6 +14,8 @@ interface ProductService {
 
     fun createProduct(product: Product): Mono<Product>
 
+    fun createProducts(products: List<Product>): Flux<Product>
+
     fun updateProduct(id: String, product: Product): Mono<Product>
 
     fun deleteProduct(id: String): Mono<Void>
