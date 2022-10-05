@@ -1,6 +1,6 @@
 package com.siberia.market.product.service
 
-import com.siberia.market.product.domain.Product
+import com.siberia.market.product.model.Product
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 

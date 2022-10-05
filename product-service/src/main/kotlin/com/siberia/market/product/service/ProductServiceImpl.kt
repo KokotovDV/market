@@ -1,6 +1,6 @@
 package com.siberia.market.product.service
 
-import com.siberia.market.product.domain.Product
+import com.siberia.market.product.model.Product
 import com.siberia.market.product.repository.ProductRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux

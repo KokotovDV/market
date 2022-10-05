@@ -1,6 +1,6 @@
 package com.siberia.market.product.controller
 
-import com.siberia.market.product.domain.Product
+import com.siberia.market.product.model.Product
 import com.siberia.market.product.service.ProductService
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux

@@ -8,13 +8,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("api/v1/market")
 class MarketController(
-//    private val searchService: SearchService
 ) {
     @GetMapping("")
     fun findProductByTitle(@RequestParam title: String): Boolean {
         return true
-
-  //      return searchService.findProductByTitle(title)
     }
 
 }
