@@ -10,7 +10,9 @@ dependencies {
     implementation(project(":order-api"))
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.postgresql:postgresql:42.5.0")
+    implementation(libs.flyway.core)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.postgresql)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

@@ -5,6 +5,9 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
+@Table(name = "orders", indexes = [
+    Index(name = "idx_order_order_uid", columnList = "order_uid", unique = true)
+])
 data class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

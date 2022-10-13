@@ -8,5 +8,5 @@ data class CreateOrderRequest(
 
 data class ProductsInfo(
     val productUid: UUID? = null,
-    val productCount: Long? = null
+    val productCount: Int? = null
 )

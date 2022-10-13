@@ -1,6 +1,4 @@
 import com.siberia.market.order.model.DocumentType
-import com.siberia.market.order.model.Product
-import com.siberia.market.order.model.Warehouse
 import java.io.Serializable
 import java.time.LocalDateTime
 import javax.persistence.Id
@@ -16,8 +14,6 @@ data class StockId (
     val documentId: String,
 
     @Id
-    val warehouse: Warehouse,
+    val rowId: String
 
-    @Id
-    val product: Product
 ) : Serializable
