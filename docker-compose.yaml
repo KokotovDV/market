@@ -71,10 +71,10 @@ services:
     depends_on:
       - mongo
 
-  search-service:
-    build: ./search-service
-    image: market/search-service:v1.0
-    container_name: search-service
+  warehouse-service:
+    build: ./warehouse-service
+    image: market/warehouse-service:v1.0
+    container_name: warehouse-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
     ports:

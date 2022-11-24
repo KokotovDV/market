@@ -2,7 +2,7 @@
 flyway-core = "9.4.0"
 postgresql = "42.3.6"
 reactor-kotlin-extensions = "1.1.7"
-kotlin = "1.7.10"
+kotlin = "1.7.21"
 
 [libraries]
 flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway-core"}

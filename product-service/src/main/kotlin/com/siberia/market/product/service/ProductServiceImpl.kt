@@ -1,49 +1,49 @@
 package com.siberia.market.product.service
 
 import com.siberia.market.product.model.Product
-import com.siberia.market.product.repository.ProductRepository
+import com.siberia.market.product.repository.ProductMongoRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Service
 class ProductServiceImpl(
-    private val productRepository: ProductRepository
+    private val productMongoRepository: ProductMongoRepository
 ) : ProductService {
 
     override fun findAllProducts(): Flux<Product> {
-        return productRepository.findAll()
+        return productMongoRepository.findAll()
     }
 
     override fun findProductById(id: String): Mono<Product> {
-        return productRepository.findById(id)
+        return productMongoRepository.findById(id)
     }
 
     override fun findProductByTitle(title: String): Flux<Product> {
-        return productRepository.findByTitle(title)
+        return productMongoRepository.findByTitle(title)
     }
 
     override fun createProduct(product: Product): Mono<Product> {
-        return productRepository.save(product)
+        return productMongoRepository.save(product)
     }
 
     override fun createProducts(products: List<Product>): Flux<Product> {
-        return productRepository.saveAll(products)
+        return productMongoRepository.saveAll(products)
     }
 
     override fun updateProduct(id: String, product: Product): Mono<Product> {
-        return productRepository.findById(id)
+        return productMongoRepository.findById(id)
             .map {
                 it.copy(
                     title = product.title,
                     description = product.description
                 )
             }
-            .flatMap { productRepository.save(it) }
+            .flatMap { productMongoRepository.save(it) }
     }
 
     override fun deleteProduct(id: String): Mono<Void> {
-        return productRepository.deleteById(id)
+        return productMongoRepository.deleteById(id)
     }
 
 }
