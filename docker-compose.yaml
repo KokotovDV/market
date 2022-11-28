@@ -71,10 +71,10 @@ services:
     depends_on:
       - mongo
 
-  warehouse-service:
-    build: ./warehouse-service
-    image: market/warehouse-service:v1.0
-    container_name: warehouse-service
+  inventory-service:
+    build: ./inventory-service
+    image: market/inventory-service:v1.0
+    container_name: inventory-service
     environment:
       SPRING_PROFILES_ACTIVE: docker
     ports:
@@ -82,16 +82,6 @@ services:
     depends_on:
       - mongo
 
-  market-service:
-    build: ./market-service
-    image: market/market-service:v1.0
-    container_name: market-service
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    ports:
-      - "8180:8180"
-    depends_on:
-      - mongo
 
 volumes:
   db-data:

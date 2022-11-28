@@ -7,15 +7,17 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":order-api"))
     implementation(project(":inventory-api"))
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(libs.flyway.core)
     implementation(libs.kotlin.reflect)
+    implementation(libs.reactor.kotlin.extensions)
     implementation(libs.postgresql)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.projectreactor:reactor-test")
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
