@@ -7,11 +7,11 @@ import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
 
 @Service
-class WarehouseServiceImpl(
-    val warehouseWebClient: WebClient
-): WarehouseService {
+class InventoryServiceImpl(
+    val inventoryWebClient: WebClient
+): InventoryService {
     override fun reserveItems(reserveItemsRequest: ReserveItemsRequest): ReserveItemsResponse? {
-        return warehouseWebClient
+        return inventoryWebClient
             .post()
             .body(BodyInserters.fromValue(reserveItemsRequest))
             .retrieve()

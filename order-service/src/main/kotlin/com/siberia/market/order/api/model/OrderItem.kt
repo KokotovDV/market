@@ -23,10 +23,6 @@ data class OrderItem(
     @Column(name = "item_uid", nullable = false)
     val itemUid: UUID,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_uid", insertable = false, updatable = false)
-    val item: Item? = null,
-
     @Column(name = "item_count", nullable = false)
     val itemCount: Int
 )

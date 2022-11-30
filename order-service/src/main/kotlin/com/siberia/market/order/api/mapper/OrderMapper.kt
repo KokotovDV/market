@@ -1,5 +1,7 @@
 package com.siberia.market.order.api.mapper
 
+import com.siberia.market.inventory.api.ItemInfo
+import com.siberia.market.inventory.api.ReserveItemsRequest
 import com.siberia.market.order.api.MakeOrderRequest
 import com.siberia.market.order.api.MakeOrderResponse
 import com.siberia.market.order.api.model.Order
@@ -27,3 +29,11 @@ fun Order.toMakeOrderResponse(): MakeOrderResponse {
     return MakeOrderResponse(orderUid)
 }
 
+fun Order.toReserveItemsRequest(): ReserveItemsRequest {
+    return ReserveItemsRequest(
+        orderUid = orderUid,
+        itemsInfo = items.map {
+            ItemInfo(itemUid = it.itemUid, itemCount = it.itemCount)
+        }
+    )
+}

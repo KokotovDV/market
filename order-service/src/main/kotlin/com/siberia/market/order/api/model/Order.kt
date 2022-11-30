@@ -6,18 +6,18 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "orders", indexes = [
-    Index(name = "idx_order_order_uid", columnList = "order_uid", unique = true)
+    Index(name = "idx_order_uid", columnList = "uid", unique = true)
 ])
 data class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(name = "order_uid", nullable = false, unique = true)
-    val orderUid: UUID,
+    @Column(name = "uid", nullable = false, unique = true)
+    val uid: UUID,
 
-    @Column(name = "order_date", nullable = false)
-    val orderDate: LocalDateTime,
+    @Column(name = "date", nullable = false)
+    val date: LocalDateTime,
 
     @OneToMany
     @JoinColumn(name = "order_item_uid")

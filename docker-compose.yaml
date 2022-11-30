@@ -56,7 +56,7 @@ services:
     ports:
       - "8480:8480"
     depends_on:
-      - mongo
+      - postgres
 
   product-service:
     build: ./product-service
@@ -69,7 +69,7 @@ services:
     ports:
       - "8380:8380"
     depends_on:
-      - mongo
+      - postgres
 
   inventory-service:
     build: ./inventory-service
@@ -80,7 +80,7 @@ services:
     ports:
       - "8280:8280"
     depends_on:
-      - mongo
+      - postgres
 
 
 volumes:
