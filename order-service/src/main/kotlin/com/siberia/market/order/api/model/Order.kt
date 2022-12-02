@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "orders", indexes = [
-    Index(name = "idx_order_uid", columnList = "uid", unique = true)
+    Index(name = "idx_orders_uid", columnList = "uid", unique = true)
 ])
 data class Order(
     @Id
@@ -16,8 +16,8 @@ data class Order(
     @Column(name = "uid", nullable = false, unique = true)
     val uid: UUID,
 
-    @Column(name = "date", nullable = false)
-    val date: LocalDateTime,
+    @Column(name = "order_date", nullable = false)
+    val orderDate: LocalDateTime,
 
     @OneToMany
     @JoinColumn(name = "order_item_uid")

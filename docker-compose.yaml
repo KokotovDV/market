@@ -25,25 +25,49 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
 
-  postgres:
-    image: library/postgres
-    container_name: postgres
-    restart: on-failure
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DATABASE}
-    volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./postgres/:/docker-entrypoint-initdb.d/
-    ports:
-      - "5432:5432"
-
   adminer:
     image: adminer
     restart: always
     ports:
       - "8080:8080"
+
+  inventory-postgres:
+    image: library/postgres
+    container_name: inventory-postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: inventory
+    volumes:
+      - inventory-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5130:5432"
+
+  inventory-service:
+    build: ./inventory-service
+    image: market/inventory-service:v1.0
+    container_name: inventory-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8180:8180"
+    depends_on:
+      - inventory-postgres
+
+  order-postgres:
+    image: library/postgres
+    container_name: order-postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: order
+    volumes:
+      - order-postgres-data:/var/lib/postgresql/data
+      - ./postgres/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5230:5432"
 
   order-service:
     build: ./order-service
@@ -54,9 +78,9 @@ services:
       MONGO_ROOT_USER: ${MONGO_ROOT_USER}
       MONGO_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     ports:
-      - "8480:8480"
+      - "8280:8280"
     depends_on:
-      - postgres
+      - order-postgres
 
   product-service:
     build: ./product-service
@@ -68,22 +92,9 @@ services:
       MONGO_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
     ports:
       - "8380:8380"
-    depends_on:
-      - postgres
-
-  inventory-service:
-    build: ./inventory-service
-    image: market/inventory-service:v1.0
-    container_name: inventory-service
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    ports:
-      - "8280:8280"
-    depends_on:
-      - postgres
-
 
 volumes:
-  db-data:
+  inventory-postgres-data:
+  order-postgres-data:
   mongodb:
   mongodb_config:

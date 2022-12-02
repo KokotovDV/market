@@ -12,7 +12,7 @@ import java.util.*
 fun MakeOrderRequest.toOrder(): Order {
     val orderUid = UUID.randomUUID()
     return Order(
-        orderUid = orderUid,
+        uid = orderUid,
         orderDate = LocalDateTime.now(),
         items = itemsInfo.map {
             OrderItem(
@@ -26,12 +26,12 @@ fun MakeOrderRequest.toOrder(): Order {
 }
 
 fun Order.toMakeOrderResponse(): MakeOrderResponse {
-    return MakeOrderResponse(orderUid)
+    return MakeOrderResponse(uid)
 }
 
 fun Order.toReserveItemsRequest(): ReserveItemsRequest {
     return ReserveItemsRequest(
-        orderUid = orderUid,
+        orderUid = uid,
         itemsInfo = items.map {
             ItemInfo(itemUid = it.itemUid, itemCount = it.itemCount)
         }

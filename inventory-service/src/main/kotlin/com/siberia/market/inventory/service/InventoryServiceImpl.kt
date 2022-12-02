@@ -7,10 +7,10 @@ import com.siberia.market.inventory.model.Item
 import com.siberia.market.inventory.repository.ItemJpaRepository
 import com.siberia.market.inventory.repository.StockJpaRepository
 import com.siberia.market.inventory.utils.equalsIgnoreOrder
-import org.springframework.data.jpa.repository.Lock
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.*
-import javax.persistence.*
+import javax.persistence.EntityNotFoundException
 
 @Service
 class InventoryServiceImpl(
@@ -18,7 +18,7 @@ class InventoryServiceImpl(
     val stockJpaRepository: StockJpaRepository
 ) : InventoryService {
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Transactional
     override fun reserveItems(reserveItemsRequest: ReserveItemsRequest): ReserveItemsResponse {
 
         val itemUIDs = reserveItemsRequest.itemsInfo.map { it.itemUid }

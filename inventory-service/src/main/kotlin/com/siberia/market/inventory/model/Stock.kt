@@ -7,7 +7,6 @@ import javax.persistence.*
 @Entity
 @IdClass(StockId::class)
 @Table(indexes = [
-    Index(name = "idx_stock_warehouse_uid", columnList = "warehouse_uid"),
     Index(name = "idx_stock_item_uid", columnList = "item_uid")
 ])
 data class Stock(
