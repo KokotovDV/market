@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.flyway.core)
     implementation(libs.kotlin.reflect)
     implementation(libs.postgresql)
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

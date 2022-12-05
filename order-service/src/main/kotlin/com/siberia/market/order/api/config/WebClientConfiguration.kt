@@ -15,7 +15,7 @@ class WebClientConfiguration {
     @Bean
     fun warehouseWebClient(properties: InventoryServiceProperties): WebClient {
         return WebClient.builder()
-            .baseUrl("${properties.serverUrl}api/v1/warehouse")
+            .baseUrl("${properties.serverUrl}api/v1/order")
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .build()
     }

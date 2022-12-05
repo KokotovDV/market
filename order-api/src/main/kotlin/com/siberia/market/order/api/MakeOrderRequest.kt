@@ -3,10 +3,14 @@ package com.siberia.market.order.api
 import java.util.*
 
 data class MakeOrderRequest(
-    val itemsInfo: List<ItemsInfo>
+    val itemsInfo: List<ItemInfo>
 )
 
-data class ItemsInfo(
+data class ItemInfo(
     val itemUid: UUID,
     val itemCount: Int
+)
+
+data class ItemInfo2(
+    val item: Int
 )
