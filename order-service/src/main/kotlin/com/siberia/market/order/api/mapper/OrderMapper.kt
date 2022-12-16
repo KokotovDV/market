@@ -11,8 +11,8 @@ import java.util.*
 
 fun MakeOrderRequest.toOrder(): Order {
     val orderUid = UUID.randomUUID()
-    return Order(
-        uid = orderUid,
+    val order = Order(
+        uid =  orderUid,
         orderDate = LocalDateTime.now(),
         items = itemsInfo.map {
             OrderItem(
@@ -23,6 +23,8 @@ fun MakeOrderRequest.toOrder(): Order {
             )
         }
     )
+    order.items.map { it.order = order }
+    return order
 }
 
 fun Order.toMakeOrderResponse(): MakeOrderResponse {

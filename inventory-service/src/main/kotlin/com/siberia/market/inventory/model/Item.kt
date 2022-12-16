@@ -1,7 +1,7 @@
 package com.siberia.market.inventory.model
 
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(indexes = [

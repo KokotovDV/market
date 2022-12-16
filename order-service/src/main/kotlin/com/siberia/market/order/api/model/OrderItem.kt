@@ -1,7 +1,7 @@
 package com.siberia.market.order.api.model
 
 import java.util.UUID
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(indexes = [
@@ -14,6 +14,10 @@ data class OrderItem(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    var order: Order? = null,
+
     @Column(name = "order_item_uid", nullable = false)
     val orderItemUid: UUID,
 
@@ -25,4 +29,24 @@ data class OrderItem(
 
     @Column(name = "item_count", nullable = false)
     val itemCount: Int
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as OrderItem
+
+        if (orderItemUid != other.orderItemUid) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return orderItemUid.hashCode()
+    }
+
+    override fun toString(): String {
+        return "OrderItem(id=$id, order=$order, orderItemUid=$orderItemUid, orderUid=$orderUid, itemUid=$itemUid, itemCount=$itemCount)"
+    }
+
+}

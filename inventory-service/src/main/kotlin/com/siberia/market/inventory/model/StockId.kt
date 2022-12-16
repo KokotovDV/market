@@ -2,7 +2,7 @@ package com.siberia.market.inventory.model
 
 import java.io.Serializable
 import java.time.LocalDateTime
-import javax.persistence.Id
+import jakarta.persistence.Id
 
 data class StockId (
     @Id

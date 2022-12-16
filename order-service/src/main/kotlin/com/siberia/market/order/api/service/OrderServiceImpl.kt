@@ -19,7 +19,7 @@ class OrderServiceImpl(
     override fun makeOrder(makeOrderRequest: MakeOrderRequest): MakeOrderResponse {
         val order = createOrder(makeOrderRequest)
         val reserveItemsRequest = order.toReserveItemsRequest()
-        val reserveItemsResponse = inventoryService.reserveItems(reserveItemsRequest)
+        //val reserveItemsResponse = inventoryService.reserveItems(reserveItemsRequest)
         return order.toMakeOrderResponse()
     }
 

@@ -2,7 +2,7 @@ package com.siberia.market.inventory.model
 
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @IdClass(StockId::class)

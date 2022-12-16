@@ -2,12 +2,14 @@ package com.siberia.market.order.api.model
 
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
-@Table(name = "orders", indexes = [
-    Index(name = "idx_orders_uid", columnList = "uid", unique = true)
-])
+@Table(
+    name = "orders", indexes = [
+        Index(name = "idx_orders_uid", columnList = "uid", unique = true)
+    ]
+)
 data class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +21,25 @@ data class Order(
     @Column(name = "order_date", nullable = false)
     val orderDate: LocalDateTime,
 
-    @OneToMany
-    @JoinColumn(name = "order_item_uid")
+    @OneToMany(mappedBy = "order", cascade=[CascadeType.ALL])
     val items: List<OrderItem>
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Order
+
+        if (uid != other.uid) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return uid.hashCode()
+    }
+
+    override fun toString(): String {
+        return "Order(id=$id, uid=$uid, orderDate=$orderDate)"
+    }
+}

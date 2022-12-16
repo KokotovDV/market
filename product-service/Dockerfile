@@ -1,10 +1,10 @@
-FROM eclipse-temurin:17 as builder
+FROM eclipse-temurin:17.0.5_8-jdk as builder
 WORKDIR application
 ARG JAR_FILE=build/libs/product-service.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM eclipse-temurin:17
+FROM eclipse-temurin:17.0.5_8-jdk
 ENV PORT=8380
 WORKDIR application
 COPY --from=builder application/spring-boot-loader/ ./

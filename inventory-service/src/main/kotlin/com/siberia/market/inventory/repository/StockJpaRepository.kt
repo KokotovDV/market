@@ -3,7 +3,7 @@ package com.siberia.market.inventory.repository
 import com.siberia.market.inventory.model.Stock
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Lock
-import javax.persistence.LockModeType
+import jakarta.persistence.LockModeType
 
 interface StockJpaRepository : JpaRepository<Stock, String> {
 
