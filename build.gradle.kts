@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.7.22" apply false
     id("org.jetbrains.kotlin.plugin.jpa") version "1.7.22" apply false
     id("org.jetbrains.kotlin.plugin.spring") version "1.7.22" apply false
+    id("org.gradle.jacoco")
 }
 
 subprojects {

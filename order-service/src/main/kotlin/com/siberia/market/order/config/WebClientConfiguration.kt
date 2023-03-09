@@ -1,6 +1,6 @@
-package com.siberia.market.order.api.config
+package com.siberia.market.order.config
 
-import com.siberia.market.order.api.properties.InventoryServiceProperties
+import com.siberia.market.order.properties.InventoryServiceProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

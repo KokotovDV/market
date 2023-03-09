@@ -1,6 +1,6 @@
-package com.siberia.market.order.api.repository
+package com.siberia.market.order.repository
 
-import com.siberia.market.order.api.model.Order
+import com.siberia.market.order.model.Order
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface OrderJpaRepository : JpaRepository<Order, Long>

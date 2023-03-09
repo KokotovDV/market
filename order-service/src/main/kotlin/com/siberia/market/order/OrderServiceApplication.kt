@@ -1,4 +1,4 @@
-package com.siberia.market.order.api
+package com.siberia.market.order
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

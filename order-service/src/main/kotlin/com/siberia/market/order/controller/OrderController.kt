@@ -1,8 +1,9 @@
-package com.siberia.market.order.api.controller
+package com.siberia.market.order.controller
 
-import com.siberia.market.order.api.MakeOrderRequest
-import com.siberia.market.order.api.MakeOrderResponse
-import com.siberia.market.order.api.service.OrderServiceImpl
+import com.siberia.market.order.MakeOrderRequest
+import com.siberia.market.order.MakeOrderResponse
+import com.siberia.market.order.model.Order
+import com.siberia.market.order.service.OrderServiceImpl
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
@@ -21,4 +22,8 @@ class OrderController(
         return orderService.makeOrder(makeOrderRequest)
     }
 
+    @PostMapping
+    fun createOrder(@RequestBody makeOrderRequest: MakeOrderRequest): Order {
+        return orderService.createOrder(makeOrderRequest)
+    }
 }

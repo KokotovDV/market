@@ -1,4 +1,4 @@
-package com.siberia.market.order.api.model
+package com.siberia.market.order.model
 
 import java.time.LocalDateTime
 import java.util.*

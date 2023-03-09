@@ -1,11 +1,11 @@
-package com.siberia.market.order.api.mapper
+package com.siberia.market.order.mapper
 
 import com.siberia.market.inventory.api.ItemInfo
 import com.siberia.market.inventory.api.ReserveItemsRequest
-import com.siberia.market.order.api.MakeOrderRequest
-import com.siberia.market.order.api.MakeOrderResponse
-import com.siberia.market.order.api.model.Order
-import com.siberia.market.order.api.model.OrderItem
+import com.siberia.market.order.MakeOrderRequest
+import com.siberia.market.order.MakeOrderResponse
+import com.siberia.market.order.model.Order
+import com.siberia.market.order.model.OrderItem
 import java.time.LocalDateTime
 import java.util.*
 

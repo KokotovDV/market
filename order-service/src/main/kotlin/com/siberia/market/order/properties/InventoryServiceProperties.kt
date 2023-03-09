@@ -1,4 +1,4 @@
-package com.siberia.market.order.api.properties
+package com.siberia.market.order.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 

@@ -1,4 +1,4 @@
-package com.siberia.market.order.api
+package com.siberia.market.order
 
 import java.util.UUID
 
