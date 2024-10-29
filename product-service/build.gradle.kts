@@ -7,8 +7,9 @@ plugins {
 
 dependencies {
     implementation(project(":product-api"))
+    implementation(kotlin("reflect"))
     implementation(libs.flyway.core)
-    implementation(libs.kotlin.reflect)
+    implementation(libs.flyway.database.postgresql)
     implementation(libs.postgresql)
     implementation(libs.reactor.kotlin.extensions)
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")

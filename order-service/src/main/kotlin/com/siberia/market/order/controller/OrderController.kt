@@ -5,7 +5,6 @@ import com.siberia.market.order.MakeOrderResponse
 import com.siberia.market.order.model.Order
 import com.siberia.market.order.service.OrderServiceImpl
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 @RequestMapping("api/v1/order")
@@ -20,10 +19,5 @@ class OrderController(
     @PostMapping
     fun makeOrder(@RequestBody makeOrderRequest: MakeOrderRequest): MakeOrderResponse {
         return orderService.makeOrder(makeOrderRequest)
-    }
-
-    @PostMapping
-    fun createOrder(@RequestBody makeOrderRequest: MakeOrderRequest): Order {
-        return orderService.createOrder(makeOrderRequest)
     }
 }

@@ -1,11 +1,10 @@
 [versions]
-flyway-core = "9.4.0"
-postgresql = "42.3.6"
-reactor-kotlin-extensions = "1.1.7"
-kotlin = "1.7.21"
+flyway = "10.20.1"
+postgresql = "42.7.4"
+reactor-kotlin-extensions = "1.2.3"
 
 [libraries]
-flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway-core"}
-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin"}
+flyway-core = { module = "org.flywaydb:flyway-core", version.ref = "flyway"}
+flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql", version.ref = "flyway"}
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql"}
 reactor-kotlin-extensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions", version.ref = "reactor-kotlin-extensions"}

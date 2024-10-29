@@ -13,7 +13,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(libs.flyway.core)
-    implementation(libs.kotlin.reflect)
+    implementation(libs.flyway.database.postgresql)
     implementation(libs.postgresql)
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

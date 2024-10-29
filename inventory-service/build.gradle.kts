@@ -8,12 +8,13 @@ plugins {
 
 dependencies {
     implementation(project(":inventory-api"))
+    implementation(kotlin("reflect"))
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation(libs.flyway.core)
-    implementation(libs.kotlin.reflect)
+    implementation(libs.flyway.database.postgresql)
     implementation(libs.reactor.kotlin.extensions)
     implementation(libs.postgresql)
     testImplementation("org.springframework.boot:spring-boot-starter-test")
