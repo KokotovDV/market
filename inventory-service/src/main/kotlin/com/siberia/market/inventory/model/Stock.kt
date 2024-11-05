@@ -31,5 +31,5 @@ data class Stock(
     val item: Item,
 
     @Column(name = "item_count")
-    val itemCount: Long
+    val itemCount: Int
 )

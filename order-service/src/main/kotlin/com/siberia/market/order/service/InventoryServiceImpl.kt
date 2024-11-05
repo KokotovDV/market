@@ -5,17 +5,19 @@ import com.siberia.market.inventory.api.ReserveItemsResponse
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.BodyInserters
 import org.springframework.web.reactive.function.client.WebClient
+import java.util.Optional
 
 @Service
 class InventoryServiceImpl(
     val inventoryWebClient: WebClient
 ): InventoryService {
-    override fun reserveItems(reserveItemsRequest: ReserveItemsRequest): ReserveItemsResponse? {
+    override fun reserveItems(reserveItemsRequest: ReserveItemsRequest): Optional<ReserveItemsResponse> {
         return inventoryWebClient
             .post()
+            .uri("/api/v1/inventory")
             .body(BodyInserters.fromValue(reserveItemsRequest))
             .retrieve()
             .bodyToMono(ReserveItemsResponse::class.java)
-            .block()
+            .blockOptional()
     }
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
 interface ItemJpaRepository : JpaRepository<Item, String> {
-    fun findAllByUidIn(UIDs: List<UUID>): List<Item>
+    fun findAllByUidIn(itemUIDs: List<UUID>): List<Item>
 }

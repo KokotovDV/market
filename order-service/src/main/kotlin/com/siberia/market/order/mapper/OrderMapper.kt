@@ -9,8 +9,16 @@ import com.siberia.market.order.model.OrderItem
 import java.time.LocalDateTime
 import java.util.*
 
-fun MakeOrderRequest.toOrder(): Order {
-    val orderUid = UUID.randomUUID()
+fun MakeOrderRequest.toReserveItemsRequest(orderUid: UUID): ReserveItemsRequest {
+    return ReserveItemsRequest(
+        orderUid = orderUid,
+        itemsInfo = itemsInfo.map {
+            ItemInfo(itemUid = it.itemUid, itemCount = it.itemCount)
+        }
+    )
+}
+
+fun MakeOrderRequest.toOrder(orderUid: UUID): Order {
     val order = Order(
         uid =  orderUid,
         orderDate = LocalDateTime.now(),
@@ -29,13 +37,4 @@ fun MakeOrderRequest.toOrder(): Order {
 
 fun Order.toMakeOrderResponse(): MakeOrderResponse {
     return MakeOrderResponse(uid)
-}
-
-fun Order.toReserveItemsRequest(): ReserveItemsRequest {
-    return ReserveItemsRequest(
-        orderUid = uid,
-        itemsInfo = items.map {
-            ItemInfo(itemUid = it.itemUid, itemCount = it.itemCount)
-        }
-    )
 }

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("api/v1/warehouse")
-open class InventoryController(
+@RequestMapping("api/v1/inventory")
+class InventoryController(
     private val inventoryService: InventoryService
 ) {
 
@@ -17,5 +17,4 @@ open class InventoryController(
     fun reserveItems(reserveItemsRequest: ReserveItemsRequest): ReserveItemsResponse {
         return inventoryService.reserveItems(reserveItemsRequest)
     }
-
 }

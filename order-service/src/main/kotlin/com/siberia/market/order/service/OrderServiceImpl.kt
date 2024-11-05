@@ -2,13 +2,14 @@ package com.siberia.market.order.service
 
 import com.siberia.market.order.MakeOrderRequest
 import com.siberia.market.order.MakeOrderResponse
+import com.siberia.market.order.exception.InventoryProcessException
 import com.siberia.market.order.mapper.toMakeOrderResponse
 import com.siberia.market.order.mapper.toOrder
 import com.siberia.market.order.mapper.toReserveItemsRequest
 import com.siberia.market.order.model.Order
 import com.siberia.market.order.repository.OrderJpaRepository
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Service
 class OrderServiceImpl(
@@ -17,18 +18,16 @@ class OrderServiceImpl(
 ) : OrderService {
 
     override fun makeOrder(makeOrderRequest: MakeOrderRequest): MakeOrderResponse {
-        val order = createOrder(makeOrderRequest)
-        val reserveItemsRequest = order.toReserveItemsRequest()
-        //val reserveItemsResponse = inventoryService.reserveItems(reserveItemsRequest)
+        val orderUid = UUID.randomUUID()
+        val reserveItemsRequest = makeOrderRequest.toReserveItemsRequest(orderUid)
+        val reserveItemsResponse = inventoryService.reserveItems(reserveItemsRequest)
+            .orElseThrow { InventoryProcessException("Can't reserve items") }
+        val order = createOrder(makeOrderRequest, orderUid)
         return order.toMakeOrderResponse()
     }
 
-//    @Transactional
-
-
-
-    override fun createOrder(makeOrderRequest: MakeOrderRequest): Order {
-        val order = makeOrderRequest.toOrder()
+    override fun createOrder(makeOrderRequest: MakeOrderRequest, orderUid: UUID): Order {
+        val order = makeOrderRequest.toOrder(orderUid)
         return orderJpaRepository.save(order)
     }
 }

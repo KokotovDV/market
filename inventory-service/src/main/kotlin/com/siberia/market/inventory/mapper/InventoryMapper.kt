@@ -6,10 +6,8 @@ import com.siberia.market.inventory.model.Item
 import com.siberia.market.inventory.model.RecordKind
 import com.siberia.market.inventory.model.Stock
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 
-fun ReserveItemsRequest.toStocks(items: List<Item>): List<Stock> {
-    val registrationDate = LocalDateTime.now(ZoneOffset.UTC);
+fun ReserveItemsRequest.toStocks(items: List<Item>, registrationDate: LocalDateTime): List<Stock> {
     return itemsInfo.map { itemInfo ->
         Stock(
             registrationDate = registrationDate,
@@ -18,7 +16,7 @@ fun ReserveItemsRequest.toStocks(items: List<Item>): List<Stock> {
             recordId = itemsInfo.indexOf(itemInfo) + 1,
             recordKind = RecordKind.Expense,
             item = items.first { item -> item.uid == itemInfo.itemUid },
-            itemCount = itemInfo.itemCount.toLong()
+            itemCount = itemInfo.itemCount
         )
     }
 }

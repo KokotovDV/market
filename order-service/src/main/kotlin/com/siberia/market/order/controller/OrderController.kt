@@ -2,7 +2,6 @@ package com.siberia.market.order.controller
 
 import com.siberia.market.order.MakeOrderRequest
 import com.siberia.market.order.MakeOrderResponse
-import com.siberia.market.order.model.Order
 import com.siberia.market.order.service.OrderServiceImpl
 import org.springframework.web.bind.annotation.*
 

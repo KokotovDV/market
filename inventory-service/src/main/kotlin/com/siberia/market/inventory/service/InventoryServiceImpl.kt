@@ -6,11 +6,12 @@ import com.siberia.market.inventory.mapper.toStocks
 import com.siberia.market.inventory.model.Item
 import com.siberia.market.inventory.repository.ItemJpaRepository
 import com.siberia.market.inventory.repository.StockJpaRepository
-import com.siberia.market.inventory.utils.equalsIgnoreOrder
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.util.*
-import jakarta.persistence.EntityNotFoundException
 
 @Service
 class InventoryServiceImpl(
@@ -23,10 +24,10 @@ class InventoryServiceImpl(
 
         val itemUIDs = reserveItemsRequest.itemsInfo.map { it.itemUid }
         val items = findItemsByUIDs(itemUIDs)
-        val stocks = reserveItemsRequest.toStocks(items)
+        val registrationDate = LocalDateTime.now(ZoneOffset.UTC);
+        val stocks = reserveItemsRequest.toStocks(items, registrationDate)
 
         stockJpaRepository.saveAll(stocks)
-
 
 
         //check
@@ -45,9 +46,8 @@ class InventoryServiceImpl(
 
     override fun findItemsByUIDs(itemUIDs: List<UUID>): List<Item> {
         val items = itemJpaRepository.findAllByUidIn(itemUIDs)
-        val databaseItemUIDs = items.map { it.uid }
-        if (!itemUIDs.equalsIgnoreOrder(databaseItemUIDs)) {
-            val notFoundItemUIDs = itemUIDs.subtract(databaseItemUIDs.toSet()).joinToString()
+        val notFoundItemUIDs = itemUIDs.subtract(items.map { it.uid }.toSet())
+        if (notFoundItemUIDs.isNotEmpty()) {
             throw EntityNotFoundException("Item not found for UIDs: '$notFoundItemUIDs'")
         }
         return items

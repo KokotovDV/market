@@ -10,7 +10,3 @@ data class ItemInfo(
     val itemUid: UUID,
     val itemCount: Int
 )
-
-data class ItemInfo2(
-    val item: Int
-)
